@@ -1,5 +1,185 @@
 'use strict';
 
+const mockData = {
+  'kind': 'youtube#searchListResponse',
+  'etag': '"g7k5f8kvn67Bsl8L-Bum53neIr4/sYm47AZmLLEehbcgY6WYnk1niXU"',
+  'nextPageToken': 'CAUQAA',
+  'regionCode': 'US',
+  'pageInfo': {
+    'totalResults': 1000000,
+    'resultsPerPage': 5
+  },
+  'items': [
+    {
+      'kind': 'youtube#searchResult',
+      'etag': '"g7k5f8kvn67Bsl8L-Bum53neIr4/JXu2rWiRP9lBwwrnREUGQqb9Hg4"',
+      'id': {
+        'kind': 'youtube#video',
+        'videoId': '7ct1jrv-hhc'
+      },
+      'snippet': {
+        'publishedAt': '2018-01-21T04:03:41.000Z',
+        'channelId': 'UCoh_z6QB0AGB1oxWufvbDUg',
+        'title': 'Golden State Warriors vs Houston Rockets Full Game Highlights / Jan 20 / 2017-18 NBA Season',
+        'description': 'Golden State Warriors vs Houston Rockets Full Game Highlights / Jan 20 / 2017-18 NBA Season Follow Us on Twitter: https://twitter.com/stayhls Like Us on Facebook: https://www.facebook.com/stayhls...',
+        'thumbnails': {
+          'default': {
+            'url': 'https://i.ytimg.com/vi/7ct1jrv-hhc/default.jpg',
+            'width': 120,
+            'height': 90
+          },
+          'medium': {
+            'url': 'https://i.ytimg.com/vi/7ct1jrv-hhc/mqdefault.jpg',
+            'width': 320,
+            'height': 180
+          },
+          'high': {
+            'url': 'https://i.ytimg.com/vi/7ct1jrv-hhc/hqdefault.jpg',
+            'width': 480,
+            'height': 360
+          }
+        },
+        'channelTitle': 'MLG Highlights',
+        'liveBroadcastContent': 'none'
+      }
+    },
+    {
+      'kind': 'youtube#searchResult',
+      'etag': '"g7k5f8kvn67Bsl8L-Bum53neIr4/pI2c1oHlB_qS8aEjI0ShCY62TgI"',
+      'id': {
+        'kind': 'youtube#video',
+        'videoId': 'mhPP0UNneD8'
+      },
+      'snippet': {
+        'publishedAt': '2018-01-21T02:45:13.000Z',
+        'channelId': 'UCoh_z6QB0AGB1oxWufvbDUg',
+        'title': 'Golden State Warriors vs Houston Rockets 1st Half Highlights / Jan 20 / 2017-18 NBA Season',
+        'description': 'Golden State Warriors vs Houston Rockets 1st Half Highlights / Jan 20 / 2017-18 NBA Season Follow Us on Twitter: https://twitter.com/stayhls Like Us on Facebook: https://www.facebook.com/stayhls...',
+        'thumbnails': {
+          'default': {
+            'url': 'https://i.ytimg.com/vi/mhPP0UNneD8/default.jpg',
+            'width': 120,
+            'height': 90
+          },
+          'medium': {
+            'url': 'https://i.ytimg.com/vi/mhPP0UNneD8/mqdefault.jpg',
+            'width': 320,
+            'height': 180
+          },
+          'high': {
+            'url': 'https://i.ytimg.com/vi/mhPP0UNneD8/hqdefault.jpg',
+            'width': 480,
+            'height': 360
+          }
+        },
+        'channelTitle': 'MLG Highlights',
+        'liveBroadcastContent': 'none'
+      }
+    },
+    {
+      'kind': 'youtube#searchResult',
+      'etag': '"g7k5f8kvn67Bsl8L-Bum53neIr4/A2YDs0BzFXwzyZNJyOFgLItZIfM"',
+      'id': {
+        'kind': 'youtube#video',
+        'videoId': 'hUZS6yW0fQk'
+      },
+      'snippet': {
+        'publishedAt': '2018-01-16T03:54:25.000Z',
+        'channelId': 'UCoh_z6QB0AGB1oxWufvbDUg',
+        'title': 'Cleveland Cavaliers vs Golden State Warriors Full Game Highlights / Jan 15 / 2017-18 NBA Season',
+        'description': 'Cleveland Cavaliers vs Golden State Warriors Full Game Highlights / Jan 15 / 2017-18 NBA Season Follow Us on Twitter: https://twitter.com/stayhls Like Us on Facebook: https://www.facebook.com/sta...',
+        'thumbnails': {
+          'default': {
+            'url': 'https://i.ytimg.com/vi/hUZS6yW0fQk/default.jpg',
+            'width': 120,
+            'height': 90
+          },
+          'medium': {
+            'url': 'https://i.ytimg.com/vi/hUZS6yW0fQk/mqdefault.jpg',
+            'width': 320,
+            'height': 180
+          },
+          'high': {
+            'url': 'https://i.ytimg.com/vi/hUZS6yW0fQk/hqdefault.jpg',
+            'width': 480,
+            'height': 360
+          }
+        },
+        'channelTitle': 'MLG Highlights',
+        'liveBroadcastContent': 'none'
+      }
+    },
+    {
+      'kind': 'youtube#searchResult',
+      'etag': '"g7k5f8kvn67Bsl8L-Bum53neIr4/oAMz_QNe_KRAeqyAFf2m645usRg"',
+      'id': {
+        'kind': 'youtube#video',
+        'videoId': 'rOGzfEBzokI'
+      },
+      'snippet': {
+        'publishedAt': '2018-01-18T03:25:46.000Z',
+        'channelId': 'UCoh_z6QB0AGB1oxWufvbDUg',
+        'title': 'Golden State Warriors vs Chicago Bulls Full Game Highlights / Jan 17 / 2017-18 NBA Season',
+        'description': 'Golden State Warriors vs Chicago Bulls Full Game Highlights / Jan 17 / 2017-18 NBA Season Follow Us on Twitter: https://twitter.com/stayhls Like Us on Facebook: https://www.facebook.com/stayhls...',
+        'thumbnails': {
+          'default': {
+            'url': 'https://i.ytimg.com/vi/rOGzfEBzokI/default.jpg',
+            'width': 120,
+            'height': 90
+          },
+          'medium': {
+            'url': 'https://i.ytimg.com/vi/rOGzfEBzokI/mqdefault.jpg',
+            'width': 320,
+            'height': 180
+          },
+          'high': {
+            'url': 'https://i.ytimg.com/vi/rOGzfEBzokI/hqdefault.jpg',
+            'width': 480,
+            'height': 360
+          }
+        },
+        'channelTitle': 'MLG Highlights',
+        'liveBroadcastContent': 'none'
+      }
+    },
+    {
+      'kind': 'youtube#searchResult',
+      'etag': '"g7k5f8kvn67Bsl8L-Bum53neIr4/vfVVxelLWdpqDSTyHdfHACnHc6I"',
+      'id': {
+        'kind': 'youtube#video',
+        'videoId': 'MhPdwzDKOb0'
+      },
+      'snippet': {
+        'publishedAt': '2017-12-31T04:03:31.000Z',
+        'channelId': 'UCoh_z6QB0AGB1oxWufvbDUg',
+        'title': 'Golden State Warriors vs Memphis Grizzlies Full Game Highlights / Dec 30 / 2017-18 NBA Season',
+        'description': 'Golden State Warriors vs Memphis Grizzlies Full Game Highlights / Dec 30 / 2017-18 NBA Season Follow Us on Twitter: https://twitter.com/stayhls Like Us on Facebook: https://www.facebook.com/stayh...',
+        'thumbnails': {
+          'default': {
+            'url': 'https://i.ytimg.com/vi/MhPdwzDKOb0/default.jpg',
+            'width': 120,
+            'height': 90
+          },
+          'medium': {
+            'url': 'https://i.ytimg.com/vi/MhPdwzDKOb0/mqdefault.jpg',
+            'width': 320,
+            'height': 180
+          },
+          'high': {
+            'url': 'https://i.ytimg.com/vi/MhPdwzDKOb0/hqdefault.jpg',
+            'width': 480,
+            'height': 360
+          }
+        },
+        'channelTitle': 'MLG Highlights',
+        'liveBroadcastContent': 'none'
+      }
+    }
+  ]
+};
+ 
+
+
 const API_KEY = 'AIzaSyAJFT82cmTK00-RIhwi8yDsRyoglaJtn2k';
 
 const store = {
@@ -24,9 +204,6 @@ const fetchVideos = function(searchTerm, callback) {
   $.getJSON(BASE_URL, queryObject, callback);
 };
 
-const logData = data => {console.log(data);};
-
-fetchVideos('golden state warriors', logData);
 
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
@@ -37,16 +214,32 @@ fetchVideos('golden state warriors', logData);
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-  console.log('testing this response');
+  return mockData.items.map((video) => {
+    return {
+      title: video.snippet.title,
+      description:video.snippet.description,
+      thumbnail:video.snippet.thumbnails.medium.url,
+      id: video.id.videoId
+    };
+  });
 };
+
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
 const generateVideoItemHtml = function(video) {
-
+  return `
+  <li>
+    <span>${video.title}</span>
+    <span>${video.description}</span>
+    <span>${video.id}</span>
+    <img src='${video.thumbnail}'>
+  </li>
+  `;
 };
+
 
 // TASK:
 // 1. Create a `addVideosToStore` function that receives an array of decorated video 
