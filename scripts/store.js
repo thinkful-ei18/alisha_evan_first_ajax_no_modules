@@ -5,12 +5,13 @@
 const store = function () {
   const videos = [];
 
-  const setVideos = (videos) => {
+  const addVideosToStore = function(videos) {
     this.videos = videos;
   };
+
   return {
     videos:videos,
-    setVideos:setVideos,
+    addVideosToStore: addVideosToStore,
     
   };
-};
+}();

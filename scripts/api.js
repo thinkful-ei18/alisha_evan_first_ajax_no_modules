@@ -14,8 +14,22 @@ const api = function () {
     $.getJSON(BASE_URL, queryObject, callback);
   };
 
-  return {
-    fetchVideos:fetchVideos,
+  const decorateResponse = function (response) {
+    return response.items.map((video) => {
+      return {
+        title: video.snippet.title,
+        description: video.snippet.description,
+        thumbnail: video.snippet.thumbnails.medium.url,
+        id: video.id.videoId
+      };
+    });
   };
 
-};
+  return {
+    fetchVideos:fetchVideos,
+    decorateResponse: decorateResponse
+  };
+
+}();
+
+console.log('hello');
