@@ -9,9 +9,15 @@ const store = function () {
     this.videos = videos;
   };
 
+  let currentSearch = '';
+
+  let nextPageToken = '';
+
   return {
     videos:videos,
     addVideosToStore: addVideosToStore,
+    nextPageToken:nextPageToken,
+    currentSearch
     
   };
 }();
