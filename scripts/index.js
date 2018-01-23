@@ -1,4 +1,6 @@
-const API_KEY = 'YOUR_KEY_HERE';
+'use strict';
+
+const API_KEY = 'AIzaSyAJFT82cmTK00-RIhwi8yDsRyoglaJtn2k';
 
 const store = {
   videos: []
@@ -6,7 +8,7 @@ const store = {
 
 // TASK: Add the Youtube Search Base URL here:
 // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
-const BASE_URL = '';
+const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 // TASK:
 // 1. Create a `fetchVideos` function that receives a `searchTerm` and `callback`
@@ -14,8 +16,17 @@ const BASE_URL = '';
 // 3. Make a getJSON call using the query object and sending the provided callback in as the last argument
 // TEST IT! Execute this function and console log the results inside the callback.
 const fetchVideos = function(searchTerm, callback) {
-
+  const queryObject = {
+    part: 'snippet', 
+    q: `${searchTerm}`,
+    key: API_KEY
+  };
+  $.getJSON(BASE_URL, queryObject, callback);
 };
+
+const logData = data => {console.log(data);};
+
+fetchVideos('golden state warriors', logData);
 
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
@@ -26,7 +37,7 @@ const fetchVideos = function(searchTerm, callback) {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-
+  console.log('testing this response');
 };
 
 // TASK:
