@@ -214,7 +214,7 @@ const fetchVideos = function(searchTerm, callback) {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-  return mockData.items.map((video) => {
+  return response.items.map((video) => {
     return {
       title: video.snippet.title,
       description:video.snippet.description,
@@ -246,8 +246,9 @@ const generateVideoItemHtml = function(video) {
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function(videos) {
-
+  store.videos = videos;
 };
+
 
 // TASK:
 // 1. Create a `render` function
@@ -255,8 +256,11 @@ const addVideosToStore = function(videos) {
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
 const render = function() {
-
+  let storeVideos = store.videos.map(generateVideoItemHtml);
+  console.log(storeVideos);
+  $('.results').html(storeVideos);
 };
+
 
 // TASK:
 // 1. Create a `handleFormSubmit` function that adds an event listener to the form
@@ -270,11 +274,25 @@ const render = function() {
 //   g) Inside the callback, run the `render` function 
 // TEST IT!
 const handleFormSubmit = function() {
-
+  $('.submitClass').submit(function(event) {
+    event.preventDefault();
+    let input = $('#search-term').val();
+    $('#search-term').val('');
+    fetchVideos(input, function(response) {
+      // console.log(response);
+      let decoratedItem = decorateResponse(response);
+      // console.log(decoratedItem);
+      addVideosToStore(decoratedItem);
+      console.log(store);
+      render();
+    });
+  });
 };
+
 
 // When DOM is ready:
 $(function () {
   // TASK:
   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
+  handleFormSubmit();
 });
