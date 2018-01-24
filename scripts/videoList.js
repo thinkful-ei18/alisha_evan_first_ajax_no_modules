@@ -13,18 +13,6 @@ const videoList = function() {
         <p>${video.id}</p>
       </li>
   `;
-    // <div>
-    //   <span>
-    //     <a id = "img" href='https://www.youtube.com/watch?v=${video.id}'><img src='${video.thumbnail}' alt =''/></a>
-    //   </span>
-    //   <li>
-    //     <a id = "title" href='https://www.youtube.com/watch?v=${video.id}'><h2>${video.title}</h2></a>
-    //     <a id = "channelId" href='https://www.youtube.com/channel/${video.channelId}'>${video.channelTitle}</a>
-    //     <p>${video.description}</p>
-    //     <p>${video.id}</p>
-    //   </li>
-    // <div>
-
   };
 
   const render = function() {
