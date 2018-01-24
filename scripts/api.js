@@ -8,22 +8,37 @@ const api = function () {
 
   const fetchVideos = function(searchTerm, callback) {
     let queryObject = {};
-    if (!store.nextPageToken) {
+    if (!store.nextPageToken && !store.prevPageToken) {
       queryObject = {
         part: 'snippet', 
         q: `${searchTerm}`,
         key: API_KEY
       };
-    } else {
+    } else if (store.nextPageToken && store.prevPageToken) {
       queryObject = {
         part: 'snippet', 
-        pageToken: store.nextPageToken,
         q: `${searchTerm}`,
-        key: API_KEY
+        key: API_KEY,
+        pageToken: store.nextPageToken && store.prevPageToken
+      };
+    } else if (store.nextPageToken) {
+      queryObject = {
+        part: 'snippet',
+        q: `${searchTerm}`,
+        key: API_KEY,
+        pageToken: store.nextPageToken,
+      };
+    } else if (store.prevPageToken) {
+      queryObject = {
+        part: 'snippet',
+        q: `${searchTerm}`,
+        key: API_KEY,
+        pageToken: store.prevPageToken,
       };
     }
     $.getJSON(BASE_URL, queryObject, callback);
   };
+  console.log($.getJSON);
 
   const decorateResponse = function (response) {
     return response.items.map((video) => {
@@ -39,14 +54,11 @@ const api = function () {
   };
 
   return {
-    fetchVideos:fetchVideos,
-    decorateResponse: decorateResponse
+    fetchVideos,
+    decorateResponse
   };
 
 }();
-
-// console.log('hello');
-
 
 
 /* 

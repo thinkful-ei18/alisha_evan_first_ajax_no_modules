@@ -20,14 +20,13 @@ const videoList = function() {
     $('.results').html(storeVideos);
   };
 
-
+  // 'response' is not an abstract term. It's the data we receive in JSON format once we've reached out to whatever URL [BASE_URL in this example], which is an object. that's how we can call one of its properties on line 32.
   const handleFormSubmit = function () {
     $('.submitClass').submit(function (event) {
       event.preventDefault();
-      let input = $('#search-term').val();
-      store.currentSearch = input;
+      store.currentSearch = $('#search-term').val();
       $('#search-term').val('');
-      api.fetchVideos(input, function (response) {
+      api.fetchVideos(store.currentSearch, function (response) {
         store.nextPageToken = response.nextPageToken;
         let decoratedItem = api.decorateResponse(response);
         store.addVideosToStore(decoratedItem);
@@ -39,8 +38,7 @@ const videoList = function() {
   const handleNextPageButton = function () {
     $('.nextPageButton').on('click',(event)=> {
       event.preventDefault();
-      let input = store.currentSearch;
-      api.fetchVideos(input, function (response) {
+      api.fetchVideos(store.currentSearch, function (response) {
         let decoratedItem = api.decorateResponse(response);
         store.addVideosToStore(decoratedItem);
         store.nextPageToken = response.nextPageToken;
@@ -49,10 +47,22 @@ const videoList = function() {
     });
   }; 
 
+  const handlePrevPageButton = function () {
+    $('.prevPageButton').on('click', (event) => {
+      event.preventDefault();
+      api.fetchVideos(store.currentSearch, function (response) {
+        let decoratedItem = api.decorateResponse(response);
+        store.addVideosToStore(decoratedItem);
+        store.prevPageToken = response.prevPageToken;
+        render();
+      });
+    });
+  }; 
+
   const bindEventListeners = function () {
     handleFormSubmit();
     handleNextPageButton();
-
+    handlePrevPageButton();
   };
 
 
@@ -61,6 +71,3 @@ const videoList = function() {
     render
   };
 }(); 
-
-console.log(api);
-// console.log('video list');
