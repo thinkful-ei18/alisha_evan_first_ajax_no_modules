@@ -1,7 +1,7 @@
 'use strict';
 
 /* global store*/
-const api = function () {
+const api = function() {
   const API_KEY = 'AIzaSyAJFT82cmTK00-RIhwi8yDsRyoglaJtn2k';
 
   const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
@@ -40,7 +40,7 @@ const api = function () {
   };
   console.log($.getJSON);
 
-  const decorateResponse = function (response) {
+  const decorateResponse = function(response) {
     return response.items.map((video) => {
       return {
         title: video.snippet.title,
@@ -59,13 +59,3 @@ const api = function () {
   };
 
 }();
-
-
-/* 
-Psuedocode for 'next page' button. 
-
-1. Create button entitled 'next page of results'
-2. Create event listener for when button is clicked.
-3. when button is clicked, retrieve the 'next page token' from the JSON data of previous request.
-4. 
-*/

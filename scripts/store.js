@@ -2,7 +2,7 @@
 
 /* Global store*/
 
-const store = function () {
+const store = function() {
   const videos = [];
 
   const addVideosToStore = function(videos) {
