@@ -13,11 +13,17 @@ const store = function () {
 
   let nextPageToken = '';
 
+  let prevPageToken = '';
+
+  let requestPrevious = false;
+
   return {
     videos:videos,
     addVideosToStore: addVideosToStore,
     nextPageToken:nextPageToken,
-    currentSearch
+    currentSearch,
+    prevPageToken,
+    requestPrevious
     
   };
 }();

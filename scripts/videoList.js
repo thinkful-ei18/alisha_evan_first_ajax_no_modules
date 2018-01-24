@@ -5,12 +5,11 @@ const videoList = function() {
 
   const generateVideoItemHtml = function (video) {
     return `
-  <li>
-    <span>${video.title}</span>
-    <span>${video.description}</span>
-    <span>${video.id}</span>
+  <li class='videoUnit'>
+    <span class='videoTitle'>${video.title}</span>
     <a href='https://www.youtube.com/watch?v=${video.id}'><img src='${video.thumbnail}'/></a>
-    <a href='https://www.youtube.com/channel/${video.channelId}'>${video.channelTitle}</a>
+    <span>${video.description}</span>
+    <p>By <a href='https://www.youtube.com/channel/${video.channelId}'>${video.channelTitle}</a></p>
   </li>
   `;
   };
@@ -18,6 +17,10 @@ const videoList = function() {
   const render = function () {
     let storeVideos = store.videos.map(generateVideoItemHtml);
     $('.results').html(storeVideos);
+    $('.results')
+      .css('display', 'flex')
+      .hide()
+      .fadeIn();
   };
 
 
@@ -29,6 +32,7 @@ const videoList = function() {
       $('#search-term').val('');
       api.fetchVideos(input, function (response) {
         store.nextPageToken = response.nextPageToken;
+        store.prevPageToken = response.prevPageToken;
         let decoratedItem = api.decorateResponse(response);
         store.addVideosToStore(decoratedItem);
         render();
@@ -44,7 +48,27 @@ const videoList = function() {
         let decoratedItem = api.decorateResponse(response);
         store.addVideosToStore(decoratedItem);
         store.nextPageToken = response.nextPageToken;
+        store.prevPageToken = response.prevPageToken;
         render();
+        console.log(store);
+      });
+    });
+  }; 
+
+  const handlePreviousPageButton = function () {
+    $('.previousPageButton').on('click',(event)=> {
+      console.log('previous ran');
+      event.preventDefault();
+      let input = store.currentSearch;
+      store.requestPrevious = true;
+      api.fetchVideos(input, function (response) {
+        let decoratedItem = api.decorateResponse(response);
+        store.addVideosToStore(decoratedItem);
+        store.nextPageToken = response.nextPageToken;
+        store.prevPageToken = response.prevPageToken;
+        render();
+        store.requestPrevious = false;
+        console.log(store);
       });
     });
   }; 
@@ -52,6 +76,7 @@ const videoList = function() {
   const bindEventListeners = function () {
     handleFormSubmit();
     handleNextPageButton();
+    handlePreviousPageButton();
 
   };
 

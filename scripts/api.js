@@ -2,13 +2,22 @@
 
 /* global store*/
 const api = function () {
-  const API_KEY = 'AIzaSyAJFT82cmTK00-RIhwi8yDsRyoglaJtn2k';
+  const API_KEY = 'AIzaSyCsiNljxYg-dcfPdUggehDMd9FgeR3uztA';
 
   const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
   const fetchVideos = function(searchTerm, callback) {
     let queryObject = {};
-    if (!store.nextPageToken) {
+    if (store.requestPrevious === true) {
+      console.log('previousREquest true');
+      queryObject = {
+        pageToken: store.prevPageToken,
+        part: 'snippet', 
+        q: `${searchTerm}`,
+        key: API_KEY
+      };
+    } else if (!store.nextPageToken) {
+      console.log('no conditions met');
       queryObject = {
         part: 'snippet', 
         q: `${searchTerm}`,
