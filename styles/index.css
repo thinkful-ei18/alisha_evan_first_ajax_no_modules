@@ -14,6 +14,7 @@ body {
 .results {
     display:flex;
     flex-wrap:wrap;
+    justify-content:center;
 }
 
 .results img {
@@ -50,13 +51,18 @@ body {
 }
 
 .submitClass input {
-    width:30em;
+    width:70%;
     font-size:2em;
     border-radius:7px;
     border:none;
     font-weight:bold;
     padding-left:20px;
     
+}
+
+.submitClass input::placeholder {
+    text-align:center;
+    color:#d3d3d3
 }
 
 .submitClass button {
